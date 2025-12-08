@@ -8,6 +8,9 @@ public class LevelManager : MonoBehaviour
    [SerializeField] private SelectionManager selectionManager;
    [SerializeField] private InputActionReference mousePosition;
    [SerializeField] private InputActionReference mouseClick;
+   [SerializeField] private Transform endPoint;
+   [SerializeField] private Transform startPoint;
+   [SerializeField] private LevelTarget levelTarget;
 
    private void OnEnable()
    {
@@ -33,6 +36,7 @@ public class LevelManager : MonoBehaviour
 
    private void Awake()
    {
+      levelTarget.targetPosition = endPoint.position;
       selectionManager.CurrentSelectable = null;
    }
 }
