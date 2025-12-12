@@ -1774,6 +1774,7 @@ GameObject:
   - component: {fileID: 1605132533}
   - component: {fileID: 1605132532}
   - component: {fileID: 1605132531}
+  - component: {fileID: 1605132535}
   m_Layer: 0
   m_Name: EndPoint
   m_TagString: EndPoint
@@ -1870,6 +1871,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1605132535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605132530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeab5f4b573528346b3a5087f25d6c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: 5
 --- !u!1 &1754673511
 GameObject:
   m_ObjectHideFlags: 0
@@ -2343,7 +2357,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 3625528946615165742, guid: 3e1fd26750103d14e88c2543cb2612ce, type: 3}
-  spawnAmount: 3
+  spawnAmount: 5
+  spawndelayRange: {x: 0.1, y: 0.5}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

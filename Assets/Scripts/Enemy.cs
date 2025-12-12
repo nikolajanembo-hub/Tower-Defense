@@ -11,26 +11,6 @@ public class Enemy : MonoBehaviour
 
    private void Start()
    {
-     
       agent.SetDestination(levelTarget.targetPosition);
-   }
-
-   private void OnTriggerEnter(Collider other)
-   {
-      if (other.CompareTag("EndPoint"))
-      {
-         StartCoroutine(EndGameRoutine());
-      }
-   }
-
-   private void EndGame()
-   { 
-      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-   }
-
-   private IEnumerator EndGameRoutine()
-   {
-      yield return new WaitForSeconds(1);
-      EndGame();
    }
 }

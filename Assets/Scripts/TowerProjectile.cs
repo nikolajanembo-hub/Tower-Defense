@@ -28,9 +28,9 @@ public class TowerProjectile : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        public void SetUp(Enemy _target, int _damage)
+        public void SetUp(Enemy target, int _damage)
         {
-            target = _target;
+            this.target = target;
             damage = _damage;
         }
 }
