@@ -66,5 +66,4 @@ public class Tower : MonoBehaviour
             Instantiate(projectile, transform.position + spawnOffset, transform.rotation).SetUp(enemy,damage);
         }
     }
-    
 }

@@ -18,6 +18,7 @@ public class EnemySpawn : MonoBehaviour
     [SerializeField] private List<int> waves;
     [SerializeField] private float waveLenght;
     [SerializeField] private TextMeshProUGUI waveTimerText;
+    [SerializeField] private Inventory inventory;
     
     private bool isTimerActive;
     private float waveTimer;
@@ -81,6 +82,10 @@ public class EnemySpawn : MonoBehaviour
     {
         if (currentWave < waves.Count)
         {
+            if (waveTimer > Time.time)
+            {
+                inventory.Coins += (int)(waveTimer - Time.time);
+            }
             StartCoroutine(SpawnEnemies());
         }
     }

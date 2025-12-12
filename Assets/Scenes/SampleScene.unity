@@ -3567,6 +3567,7 @@ MonoBehaviour:
   waves: 0f000000140000001e0000002800000032000000
   waveLenght: 20
   waveTimerText: {fileID: 79987270}
+  inventory: {fileID: 11400000, guid: 7cb7288d21935af4590dcd32f8a8be2e, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
