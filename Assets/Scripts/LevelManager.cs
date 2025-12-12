@@ -11,7 +11,9 @@ public class LevelManager : MonoBehaviour
    [SerializeField] private Transform endPoint;
    [SerializeField] private Transform startPoint;
    [SerializeField] private LevelTarget levelTarget;
-
+   [SerializeField] private Inventory inventory;
+   [SerializeField]private int startingCoins;
+   
    private void OnEnable()
    {
       mouseClick.action.performed += OnClick;
@@ -36,6 +38,7 @@ public class LevelManager : MonoBehaviour
 
    private void Awake()
    {
+      inventory.Coins = startingCoins;
       levelTarget.targetPosition = endPoint.position;
       selectionManager.CurrentSelectable = null;
    }

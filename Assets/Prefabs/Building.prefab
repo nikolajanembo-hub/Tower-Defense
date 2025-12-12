@@ -149,3 +149,4 @@ MonoBehaviour:
   damage: 3
   projectile: {fileID: 5117708333376908375, guid: 419b7b8e07e83a243a77927e160266ba, type: 3}
   spawnOffset: {x: 0, y: 0.3, z: 0}
+  price: 3

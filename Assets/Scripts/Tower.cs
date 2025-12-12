@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class TowerScript : MonoBehaviour
+public class Tower : MonoBehaviour
 {
     private Enemy enemy;
     private List<Enemy> enemiesInRange = new List<Enemy>();
@@ -11,7 +11,14 @@ public class TowerScript : MonoBehaviour
     [SerializeField] private int damage;
     [SerializeField] private TowerProjectile projectile;
     [SerializeField] Vector3 spawnOffset;
+    [SerializeField] private int price;
     private float time;
+
+    public int Price
+    {
+        get => price;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent<Enemy>(out Enemy newenemy))
@@ -59,4 +66,5 @@ public class TowerScript : MonoBehaviour
             Instantiate(projectile, transform.position + spawnOffset, transform.rotation).SetUp(enemy,damage);
         }
     }
+    
 }
