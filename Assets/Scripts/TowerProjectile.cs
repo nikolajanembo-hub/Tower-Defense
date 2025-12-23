@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
 
-public class TowerProjectile : MonoBehaviour
+public class TowerProjectile : Projectile
 {
     public Enemy target;
-    private int damage;
+    
     [SerializeField] private float projectileSpeed;
     
         private void Update() 
@@ -21,14 +21,13 @@ public class TowerProjectile : MonoBehaviour
         }
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other.gameObject.name);
             if (other.gameObject.TryGetComponent(out Enemy enemy))
             {
-                Destroy(other.gameObject);
+                enemy.Hit(damage);
                 Destroy(gameObject);
             }
         }
-        public void SetUp(Enemy target, int _damage)
+        public override void SetUp(Enemy target, int _damage)
         {
             this.target = target;
             damage = _damage;

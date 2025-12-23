@@ -10,15 +10,15 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawn : MonoBehaviour
 {
-    [SerializeField] private GameObject enemy;
     [SerializeField]private Vector2 spawndelayRange;
     [SerializeField] private float sphereSpawnRange;
     [SerializeField] private Button spawnButton;
     [SerializeField] private TextMeshProUGUI waveNumberText;
-    [SerializeField] private List<int> waves;
+    [SerializeField] private List<Wave> waves;
     [SerializeField] private float waveLenght;
     [SerializeField] private TextMeshProUGUI waveTimerText;
     [SerializeField] private Inventory inventory;
+    [SerializeField] private EnemyTracker enemyTracker;
     
     private bool isTimerActive;
     private float waveTimer;
@@ -28,6 +28,7 @@ public class EnemySpawn : MonoBehaviour
     {
         waveNumberText.text = "Wave: " + currentWave + "/" + waves.Count.ToString();
         waveTimerText.text = " ";
+        enemyTracker.Init();
     }
 
     private void OnEnable()
@@ -45,14 +46,33 @@ public class EnemySpawn : MonoBehaviour
         isTimerActive = false;
         spawnButton.gameObject.SetActive(false);
         waveNumberText.text = "Wave: " + (currentWave + 1) + "/" + waves.Count.ToString();
-        for (int enemiesSpawned = 0; enemiesSpawned < waves[currentWave]; enemiesSpawned++)
+        foreach (Wave.SpawnType type in waves[currentWave].types)
         {
-            yield return new WaitForSeconds(Random.Range(spawndelayRange.x, spawndelayRange.y));
-            Instantiate(enemy,transform.position  + Random.insideUnitSphere*sphereSpawnRange,Quaternion.identity);
+            for (int i = 0; i < type.count; i++)
+            {
+                yield return new WaitForSeconds(Random.Range(spawndelayRange.x, spawndelayRange.y));
+                Instantiate(type.type,transform.position  + Random.insideUnitSphere*sphereSpawnRange,Quaternion.identity);
+            }
         }
-        spawnButton.gameObject.SetActive(true);
         currentWave++;
-        StartCoroutine(WaveTimer());
+        if (currentWave < waves.Count)
+        {
+            spawnButton.gameObject.SetActive(true);
+            StartCoroutine(WaveTimer());
+        }
+        else
+        {
+            enemyTracker.EnemyCountChanged += EndGameCheck;
+        }
+       // Skriptal object enemy tracker koji se povecava kad se spawn smanja kad se skida Coin za enemy bukvalno i na promenu enemy subscribe enemy spawner 
+    }
+
+    private void EndGameCheck()
+    {
+        if (enemyTracker.Enemies.Count == 0)
+        {
+            Debug.Log("Level complete");
+        }
     }
 
     private IEnumerator WaveTimer()
@@ -71,7 +91,7 @@ public class EnemySpawn : MonoBehaviour
             StartSpawning();
         }
     }
-
+    
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -87,6 +107,28 @@ public class EnemySpawn : MonoBehaviour
                 inventory.Coins += (int)(waveTimer - Time.time);
             }
             StartCoroutine(SpawnEnemies());
+        }
+    }
+
+    [Serializable] public class Wave
+    {
+        public List<SpawnType> types = new List<SpawnType>();
+
+        public int Count
+        {
+            get
+            {
+                int counter = 0;
+                foreach (SpawnType type in types)
+                    counter += type.count;
+                return counter;
+            }
+        }
+
+        [Serializable] public class SpawnType
+        {
+            public Enemy type;
+            public int count;
         }
     }
 }

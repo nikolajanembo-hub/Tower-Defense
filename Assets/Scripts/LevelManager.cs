@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
    [SerializeField] private LevelTarget levelTarget;
    [SerializeField] private Inventory inventory;
    [SerializeField]private int startingCoins;
+   [SerializeField] private LayerMask layerMask;
    
    private void OnEnable()
    {
@@ -24,9 +25,9 @@ public class LevelManager : MonoBehaviour
       Vector2 mousePos = mousePosition.action.ReadValue<Vector2>();
       Ray mouseRay = Camera.main.ScreenPointToRay(mousePos);
       RaycastHit hit;
-      if (Physics.Raycast(mouseRay, out hit))
+      if (Physics.Raycast(mouseRay, out hit, float.MaxValue, layerMask, QueryTriggerInteraction.Ignore))
       {
-         ISelectable selectable = hit.collider.GetComponent<ISelectable>();
+         Selectable selectable = hit.collider.GetComponent<Selectable>();
          selectionManager.CurrentSelectable = selectable;
       }
    }

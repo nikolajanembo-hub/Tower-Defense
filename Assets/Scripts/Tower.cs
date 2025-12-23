@@ -1,22 +1,31 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class Tower : Selectable
 {
+    [SerializeField] private string towerName;
     private Enemy enemy;
     private List<Enemy> enemiesInRange = new List<Enemy>();
-    [SerializeField] private float fireRate;
-    [SerializeField] private int damage;
-    [SerializeField] private TowerProjectile projectile;
+    [SerializeField] private TowerStats stats;
+    [SerializeField] private Projectile projectile;
     [SerializeField] Vector3 spawnOffset;
-    [SerializeField] private int price;
+    [SerializeField] private SphereCollider rangeCollider;
     private float time;
+    private int level = 0;
+    
 
-    public int Price
+    public int Price => stats.GetStat(level).cost;
+    public int Level => level;
+    public TowerStats Stats => stats;
+    public string Name => towerName;
+
+    private void Awake()
     {
-        get => price;
+        level = 0;
+        rangeCollider.radius = stats.GetStat(level).range;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,8 +71,25 @@ public class Tower : MonoBehaviour
     {
         if (Time.time >= time && enemy != null)
         {
-            time = Time.time + fireRate;
-            Instantiate(projectile, transform.position + spawnOffset, transform.rotation).SetUp(enemy,damage);
+            time = Time.time + stats.GetStat(level).fireRate;
+            Instantiate(projectile, transform.position + spawnOffset, transform.rotation).SetUp(enemy,stats.GetStat(level).damage);
+            transform.DOJump(enemy.transform.position, 3f, 1, 2f);
         }
+    }
+
+    public override void Select()
+    {
+        
+    }
+
+    public override void Deselect()
+    {
+        
+    }
+
+    public void Upgrade()
+    {
+        level++;
+        rangeCollider.radius = stats.GetStat(level).range;
     }
 }

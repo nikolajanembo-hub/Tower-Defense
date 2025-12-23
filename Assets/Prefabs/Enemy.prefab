@@ -150,6 +150,8 @@ MonoBehaviour:
   agent: {fileID: 3553153599998803067}
   levelTarget: {fileID: 11400000, guid: bc59460c173168241b58e9a80f91a5d0, type: 2}
   inventory: {fileID: 11400000, guid: 7cb7288d21935af4590dcd32f8a8be2e, type: 2}
+  enemyTracker: {fileID: 11400000, guid: e47d13a19f15c8a45b9ab95a491ef56c, type: 2}
+  health: 3
 --- !u!54 &4281664808000291328
 Rigidbody:
   m_ObjectHideFlags: 0

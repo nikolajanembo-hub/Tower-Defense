@@ -4,9 +4,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SelectionManager", menuName = "Scriptable Objects/SelectionManager")]
 public class SelectionManager : ScriptableObject
 {
-    public event Action<ISelectable> Selected;
+    public event Action<Selectable> Selected;
 
-    public ISelectable CurrentSelectable
+    public Selectable CurrentSelectable
     {
         get => currentSelectable;
         set
@@ -29,5 +29,5 @@ public class SelectionManager : ScriptableObject
         
     }
 
-    private ISelectable currentSelectable;
+    private Selectable currentSelectable;
 }

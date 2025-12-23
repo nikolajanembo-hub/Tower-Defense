@@ -9,7 +9,7 @@ public class BuildingManager : MonoBehaviour
 
     private void OnEnable()
     {
-        buildingPanel.SetActive(selectionManager.CurrentSelectable != null);
+        buildingPanel.SetActive(selectionManager.CurrentSelectable != null && selectionManager.CurrentSelectable is BuildingPlace);
         selectionManager.Selected += OnSelected;
     }
 
@@ -18,9 +18,9 @@ public class BuildingManager : MonoBehaviour
         selectionManager.Selected -= OnSelected;
     }
 
-    private void OnSelected(ISelectable selectable)
+    private void OnSelected(Selectable selectable)
     {
-        buildingPanel.SetActive(selectable != null);
+        buildingPanel.SetActive(selectable != null && selectable is BuildingPlace);
     }
     
 }
