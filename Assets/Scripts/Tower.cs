@@ -73,7 +73,6 @@ public class Tower : Selectable
         {
             time = Time.time + stats.GetStat(level).fireRate;
             Instantiate(projectile, transform.position + spawnOffset, transform.rotation).SetUp(enemy,stats.GetStat(level).damage);
-            transform.DOJump(enemy.transform.position, 3f, 1, 2f);
         }
     }
 

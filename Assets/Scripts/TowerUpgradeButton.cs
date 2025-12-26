@@ -30,7 +30,7 @@ public class TowerUpgradeButton : MonoBehaviour
     {
         if (selectionManager.CurrentSelectable is Tower tower)
         {
-            towerLevel.SetText("Upgrade to level " + (tower.Level + 2));
+            towerLevel.SetText("Upgrade to level " + (tower.Level + 2) + tower.Stats.GetStat(tower.Level + 1).cost); 
         }
     }
 

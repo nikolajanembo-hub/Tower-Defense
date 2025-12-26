@@ -13,8 +13,21 @@ public class BombProjectile : Projectile
     private void DoDamage()
     {
         var detected = Physics.OverlapSphere(transform.position, 3f);
-        // prodji kroz collidere proveri da li su enemy ako jesu uradi dmg
+
+        foreach (var item in detected)
+        {
+            var enemy = item.GetComponentInParent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.Hit(damage);
+            }
+        }
+
+        Destroy(gameObject); 
+    }
+    
+        // gotov - prodji kroz collidere proveri da li su enemy ako jesu uradi dmg
         //novi tower sa bomb projectileom
         //UI button za 2 odvojena towera koji uzimaju ime towera koji je assignovan na njih
     }
-}
+
