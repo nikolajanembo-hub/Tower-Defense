@@ -1,18 +1,21 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
 public class BombProjectile : Projectile
 {
-    
+    [SerializeField] private float explosionRange = 3f;
+    [SerializeField] private float height = 5f;
+    [SerializeField] private ParticleSystem particle;    
     public override void SetUp(Enemy target, int _damage)
     {
         damage =  _damage;
-        transform.DOJump(target.transform.position, 2f, 1, 2f).onComplete += DoDamage;
+        transform.DOJump(target.transform.position, height, 1, speed).SetEase(Ease.Linear).onComplete += DoDamage;
     }
 
     private void DoDamage()
     {
-        var detected = Physics.OverlapSphere(transform.position, 3f);
+        var detected = Physics.OverlapSphere(transform.position, explosionRange);
 
         foreach (var item in detected)
         {
@@ -22,12 +25,14 @@ public class BombProjectile : Projectile
                 enemy.Hit(damage);
             }
         }
-
+        Instantiate(particle, transform.position, particle.transform.rotation);
         Destroy(gameObject); 
     }
-    
-        // gotov - prodji kroz collidere proveri da li su enemy ako jesu uradi dmg
-        //novi tower sa bomb projectileom
-        //UI button za 2 odvojena towera koji uzimaju ime towera koji je assignovan na njih
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position,explosionRange);
     }
+}
 
