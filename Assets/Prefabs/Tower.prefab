@@ -54,10 +54,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 2
+  m_Height: 14
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 1, z: -0.00000008940697}
+  m_Center: {x: 0.000000059604645, y: 7, z: -0.00000008940697}
 --- !u!135 &5134691486431010531
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -91,6 +91,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22ab54d6a90a3d148b3ccc805d1cfd40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedWidth: 0.5
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  highlightedWidth: 0.5
+  highlightedColor: {r: 1, g: 1, b: 1, a: 1}
+  unselectedWidth: 0.5
+  unselectedColor: {r: 0, g: 0, b: 0, a: 1}
   towerName: Archer
   stats: {fileID: 11400000, guid: 500e3f2e5f247c242ac3a0185c762f51, type: 2}
   projectile: {fileID: 5117708333376908375, guid: 419b7b8e07e83a243a77927e160266ba, type: 3}

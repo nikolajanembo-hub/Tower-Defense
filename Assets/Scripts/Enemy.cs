@@ -7,11 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
+   public event Action OnHit;
    [SerializeField] private NavMeshAgent agent;
    [SerializeField] private LevelTarget levelTarget;
    [SerializeField] private Inventory inventory;
    [SerializeField] private EnemyTracker enemyTracker;
    [SerializeField] private int health;
+   
+   public int Health => health;
    
    private void Start()
    {
@@ -32,5 +35,6 @@ public class Enemy : MonoBehaviour
       {
          Destroy(gameObject);
       }
+      OnHit?.Invoke();
    }
 }

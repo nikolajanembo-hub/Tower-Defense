@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8133613912730751122}
   - component: {fileID: 5134691486431010531}
   - component: {fileID: 7813119049884620926}
+  - component: {fileID: 7933910553491016597}
   m_Layer: 0
   m_Name: BombTower
   m_TagString: Untagged
@@ -91,11 +92,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22ab54d6a90a3d148b3ccc805d1cfd40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedWidth: 0.5
+  selectedColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  highlightedWidth: 0.5
+  highlightedColor: {r: 1, g: 1, b: 1, a: 1}
+  unselectedWidth: 0.5
+  unselectedColor: {r: 0, g: 0, b: 0, a: 1}
   towerName: Bomb
   stats: {fileID: 11400000, guid: 7409797828001d248937cc5ddd2884f8, type: 2}
   projectile: {fileID: 4999290264394772658, guid: b3d1e52b9548c2844ad22076ebafad44, type: 3}
   spawnOffset: {x: 0, y: 2, z: 0}
   rangeCollider: {fileID: 5134691486431010531}
+--- !u!114 &7933910553491016597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078557200133935356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b65ce2ad5f94c94582640015a07fe64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tower: {fileID: 7813119049884620926}
+  pivot: {fileID: 187230560349123212}
+  rotateSpeed: 15
 --- !u!1001 &186866290490922320
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -107,6 +129,26 @@ PrefabInstance:
     - target: {fileID: 1674050128692650, guid: 997eda0f844715845a30121b4553e2fd, type: 3}
       propertyPath: m_Name
       value: HM_cannon_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165866241402844, guid: 997eda0f844715845a30121b4553e2fd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165866241402844, guid: 997eda0f844715845a30121b4553e2fd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165866241402844, guid: 997eda0f844715845a30121b4553e2fd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165866241402844, guid: 997eda0f844715845a30121b4553e2fd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4165866241402844, guid: 997eda0f844715845a30121b4553e2fd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4509344712265162, guid: 997eda0f844715845a30121b4553e2fd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -158,5 +200,10 @@ PrefabInstance:
 --- !u!4 &182365956638136474 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4509344712265162, guid: 997eda0f844715845a30121b4553e2fd, type: 3}
+  m_PrefabInstance: {fileID: 186866290490922320}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &187230560349123212 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4165866241402844, guid: 997eda0f844715845a30121b4553e2fd, type: 3}
   m_PrefabInstance: {fileID: 186866290490922320}
   m_PrefabAsset: {fileID: 0}

@@ -25,6 +25,21 @@ public class LevelManager : MonoBehaviour
       mouseClick.action.performed += OnClick;
    }
 
+   private void Update()
+   {
+      Vector2 mousePos = mousePosition.action.ReadValue<Vector2>();
+      if (!IsOverUi(mousePos))
+      {
+         Ray mouseRay = Camera.main.ScreenPointToRay(mousePos);
+         RaycastHit hit;
+         if (Physics.Raycast(mouseRay, out hit, float.MaxValue, layerMask, QueryTriggerInteraction.Ignore))
+         {
+            Selectable selectable = hit.collider.GetComponent<Selectable>();
+            selectionManager.Highlighted = selectable;
+         }
+      }
+   }
+
    private void OnClick(InputAction.CallbackContext obj)
    {
       Vector2 mousePos = mousePosition.action.ReadValue<Vector2>();

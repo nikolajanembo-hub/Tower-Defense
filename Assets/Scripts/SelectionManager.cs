@@ -26,8 +26,29 @@ public class SelectionManager : ScriptableObject
             }
             Selected?.Invoke(value);
         }
-        
+    }
+
+    public Selectable Highlighted
+    {
+        get => highlighted;
+        set
+        {
+            if (highlighted == value)
+            {
+                return;
+            }
+            if (highlighted != null && currentSelectable != highlighted)
+            {
+                highlighted.Deselect();
+            }
+            highlighted = value;
+            if (value != null && currentSelectable != highlighted)
+            {
+                value.Highlight();
+            }
+        }
     }
 
     private Selectable currentSelectable;
+    private Selectable highlighted;
 }

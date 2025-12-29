@@ -15,6 +15,8 @@ public class Tower : Selectable
     [SerializeField] private SphereCollider rangeCollider;
     private float time;
     private int level = 0;
+
+    public Enemy Enemy => enemy;
     
 
     public int Price => stats.GetStat(level).cost;
@@ -22,8 +24,9 @@ public class Tower : Selectable
     public TowerStats Stats => stats;
     public string Name => towerName;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         level = 0;
         rangeCollider.radius = stats.GetStat(level).range;
     }
@@ -74,16 +77,6 @@ public class Tower : Selectable
             time = Time.time + stats.GetStat(level).fireRate;
             Instantiate(projectile, transform.position + spawnOffset, transform.rotation).SetUp(enemy,stats.GetStat(level).damage);
         }
-    }
-
-    public override void Select()
-    {
-        
-    }
-
-    public override void Deselect()
-    {
-        
     }
 
     public void Upgrade()

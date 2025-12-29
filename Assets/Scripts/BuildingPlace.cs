@@ -1,16 +1,9 @@
+using System;
 using UnityEditor;
+using UnityEditor.ShaderGraph.Configuration;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class BuildingPlace : Selectable
 {
-    public override void Select()
-    {
-        GetComponent<Renderer>().material.color = Color.yellow;
-    }
-
-    public override void Deselect()
-    {
-        GetComponent<Renderer>().material.color = Color.white;
-    }
 }
